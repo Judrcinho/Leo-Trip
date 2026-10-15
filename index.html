@@ -21,6 +21,30 @@ html{-webkit-text-size-adjust:100%}body{overflow-x:hidden}button,select,input{to
 }
 @media(min-width:641px){.edit-item,.remove-item{transition:background .15s}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+
+/* Mobile usability: larger actions and readable, untruncated labels */
+@media(max-width:640px){
+.hero h1{font-size:clamp(34px,9.5vw,48px);max-width:290px;overflow-wrap:normal}
+.cat-head{display:grid;grid-template-columns:48px minmax(0,1fr) 24px;gap:10px;align-items:center;padding:15px 14px}
+.cat-head>span:nth-child(2){min-width:0}
+.cat-name{display:block;font-size:clamp(19px,5.5vw,23px);line-height:1.2;white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:break-word}
+.cat-count{font-size:13px;line-height:1.4;margin-top:5px}
+.cat-icon{width:46px;height:46px;font-size:25px}.chev{margin-left:0}
+.item{grid-template-columns:28px minmax(0,1fr) 54px 54px;gap:10px 8px;padding:15px 3px;min-height:120px}
+.item .name{font-size:16px;line-height:1.5;font-weight:700;white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:break-word;max-width:100%}
+.item .status{min-height:54px;height:54px;font-size:14px;padding:10px 12px;border-radius:14px}
+.item .edit-item,.item .remove-item{width:54px;height:54px;min-width:54px;min-height:54px;border-radius:14px;font-size:23px}
+.cat-add{min-height:54px;font-size:15px;border-radius:14px}
+.add-btn{min-height:52px;padding:12px 16px;font-size:14px}
+.search{min-height:52px}
+.tabs button{min-height:50px;font-size:14px;padding:12px 16px}
+.modal-actions button{min-height:54px;font-size:15px}
+}
+@media(max-width:370px){
+.item{grid-template-columns:24px minmax(0,1fr) 50px 50px;column-gap:6px}
+.item .edit-item,.item .remove-item{width:50px;min-width:50px}
+.hero h1{font-size:34px;max-width:250px}
+}
 </style><!-- deployment refresh: 2026-10-15 lion redesign --></head>
 <body><header class="hero"><div class="hero-inner"><div class="eyebrow">✦ A little lion's big adventure ✦</div><h1>Leo's <em>little</em><br>mountain escape</h1><p>Our cosy family packing list for four lovely days in the Blue Mountains. One tiny explorer, a whole lot of essentials. ♡</p>
 <div class="lion-wrap" aria-hidden="true"><svg viewBox="0 0 200 205" xmlns="http://www.w3.org/2000/svg"><g fill="#d99a46"><circle cx="100" cy="100" r="84"/><circle cx="51" cy="47" r="30"/><circle cx="149" cy="47" r="30"/></g><circle cx="51" cy="47" r="16" fill="#f7c7a2"/><circle cx="149" cy="47" r="16" fill="#f7c7a2"/><circle cx="100" cy="106" r="70" fill="#f6c77c"/><ellipse cx="100" cy="139" rx="47" ry="35" fill="#ffebce"/><ellipse cx="76" cy="102" rx="6" ry="8" fill="#514237"/><ellipse cx="124" cy="102" rx="6" ry="8" fill="#514237"/><path d="M91 128Q100 119 109 128Q104 139 100 139Q96 139 91 128" fill="#624c40"/><path d="M100 139q-13 18-25 2m25-2q13 18 25 2" stroke="#624c40" stroke-width="4" fill="none" stroke-linecap="round"/><ellipse cx="58" cy="123" rx="13" ry="7" fill="#eeaa91" opacity=".6"/><ellipse cx="142" cy="123" rx="13" ry="7" fill="#eeaa91" opacity=".6"/><path d="M50 70q-11 7-16 19m116-19q11 7 16 19" stroke="#c07f37" stroke-width="8" fill="none" stroke-linecap="round"/><path d="M83 177q-13 16-4 22m38-22q13 16 4 22" stroke="#d99a46" stroke-width="13" fill="none" stroke-linecap="round"/></svg></div>
