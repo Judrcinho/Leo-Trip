@@ -53,4 +53,3 @@ const watchCards=new MutationObserver(()=>{
 watchCards.observe(document.getElementById('categories'),{childList:true,subtree:true});
 watchCards.takeRecords();
 document.querySelectorAll('.item').forEach(card=>{card.tabIndex=0;card.setAttribute('role','checkbox');card.setAttribute('aria-checked',String(card.dataset.status==='packed'));const indicator=card.querySelector('span:first-child');if(indicator)indicator.textContent=card.dataset.status==='packed'?'✓':card.dataset.status==='progress'?'◐':'○'});
-
