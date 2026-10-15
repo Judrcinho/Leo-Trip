@@ -54,30 +54,3 @@ watchCards.observe(document.getElementById('categories'),{childList:true,subtree
 watchCards.takeRecords();
 document.querySelectorAll('.item').forEach(card=>{card.tabIndex=0;card.setAttribute('role','checkbox');card.setAttribute('aria-checked',String(card.dataset.status==='packed'));const indicator=card.querySelector('span:first-child');if(indicator)indicator.textContent=card.dataset.status==='packed'?'✓':card.dataset.status==='progress'?'◐':'○'});
 
-/* Single clear completion control: no native dropdown or duplicate ticks. */
-const simpleStyles=document.createElement('style');
-simpleStyles.textContent='.item select.status{display:none!important}.item .progress-action{grid-column:2;grid-row:2;justify-self:start;min-height:46px;padding:10px 14px;border-radius:14px;border:1px solid #d7e5df;background:#f3f8f5;color:#387967;font-size:14px;font-weight:750;cursor:pointer}.item[data-status="progress"] .progress-action{background:#fff0d5;color:#97661b;border-color:#f0d49c}.item[data-status="packed"] .progress-action{background:#e6f4ec;color:#237b61}@media(max-width:640px){.item .progress-action{font-size:14px;min-height:50px}.item .name{line-height:1.5}}';
-document.head.appendChild(simpleStyles);
-function enhancePackingRows(){
- document.querySelectorAll('.item').forEach(card=>{
-  if(card.querySelector('.progress-action'))return;
-  const select=card.querySelector('select.status');
-  if(!select)return;
-  const action=document.createElement('button');
-  action.type='button';action.className='progress-action';
-  action.textContent=select.value==='progress'?'↩ To pack':'⏳ In progress';
-  action.setAttribute('aria-label',select.value==='progress'?'Return item to To pack':'Mark item In progress');
-  action.addEventListener('click',event=>{
-   event.stopPropagation();
-   const data=window.leoSyncBridge.read();
-   const id=decodeURIComponent(select.dataset.group)+'|'+decodeURIComponent(select.dataset.item);
-   data.statuses[id]=select.value==='progress'?'todo':'progress';
-   window.leoSyncBridge.apply(data);
-   window.dispatchEvent(new Event('leo-local-change'));
-  });
-  select.insertAdjacentElement('afterend',action);
- });
-}
-const simpleObserver=new MutationObserver(enhancePackingRows);
-simpleObserver.observe(document.getElementById('categories'),{childList:true,subtree:true});
-enhancePackingRows();
