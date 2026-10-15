@@ -1,0 +1,15 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /trips/leo-blue-mountains {
+      // Replace placeholders with the Firebase Authentication UIDs for you and Alex.
+      // Until then, nobody can access this shared document.
+      allow read, write: if request.auth != null &&
+        request.auth.uid in [
+          "REPLACE_WITH_YOUR_FIREBASE_UID",
+          "REPLACE_WITH_ALEX_FIREBASE_UID"
+        ];
+    }
+    match /{document=**} { allow read, write: if false; }
+  }
+}
